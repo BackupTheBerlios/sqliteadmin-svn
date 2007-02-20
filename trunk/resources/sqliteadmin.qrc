@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="icons" >
+        <file>editdelete.png</file>
+    </qresource>
+</RCC>

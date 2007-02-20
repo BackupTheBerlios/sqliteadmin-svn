@@ -1,0 +1,597 @@
+<ui version="4.0" >
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>783</width>
+    <height>767</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>3WDG SQLite Admin</string>
+  </property>
+  <widget class="QWidget" name="centralwidget" >
+   <layout class="QGridLayout" >
+    <property name="margin" >
+     <number>9</number>
+    </property>
+    <property name="spacing" >
+     <number>6</number>
+    </property>
+    <item row="0" column="0" >
+     <widget class="QSplitter" name="mainSplitter" >
+      <property name="orientation" >
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="QSplitter" name="leftSplitter" >
+       <property name="sizePolicy" >
+        <sizepolicy>
+         <hsizetype>7</hsizetype>
+         <vsizetype>7</vsizetype>
+         <horstretch>0</horstretch>
+         <verstretch>1</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="baseSize" >
+        <size>
+         <width>100</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="orientation" >
+        <enum>Qt::Vertical</enum>
+       </property>
+       <widget class="QWidget" name="layoutWidget" >
+        <layout class="QVBoxLayout" >
+         <property name="margin" >
+          <number>0</number>
+         </property>
+         <property name="spacing" >
+          <number>6</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="databaseLabel" >
+           <property name="baseSize" >
+            <size>
+             <width>200</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="text" >
+            <string>Database</string>
+           </property>
+           <property name="textFormat" >
+            <enum>Qt::AutoText</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="TableListWidget" name="tablesList" >
+           <property name="contextMenuPolicy" >
+            <enum>Qt::DefaultContextMenu</enum>
+           </property>
+           <property name="alternatingRowColors" >
+            <bool>true</bool>
+           </property>
+           <property name="selectionBehavior" >
+            <enum>QAbstractItemView::SelectRows</enum>
+           </property>
+           <property name="sortingEnabled" >
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="layoutWidget" >
+        <layout class="QVBoxLayout" >
+         <property name="margin" >
+          <number>0</number>
+         </property>
+         <property name="spacing" >
+          <number>6</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="tableLabel" >
+           <property name="text" >
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QTabWidget" name="tableTabWidget" >
+           <property name="sizePolicy" >
+            <sizepolicy>
+             <hsizetype>7</hsizetype>
+             <vsizetype>7</vsizetype>
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="baseSize" >
+            <size>
+             <width>200</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="tabPosition" >
+            <enum>QTabWidget::North</enum>
+           </property>
+           <widget class="QWidget" name="fieldTab" >
+            <attribute name="title" >
+             <string>Fields</string>
+            </attribute>
+            <layout class="QGridLayout" >
+             <property name="margin" >
+              <number>9</number>
+             </property>
+             <property name="spacing" >
+              <number>6</number>
+             </property>
+             <item row="0" column="0" >
+              <widget class="QTableView" name="fieldsTableView" >
+               <property name="alternatingRowColors" >
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QTabWidget" name="centalTabWidget" >
+       <property name="tabPosition" >
+        <enum>QTabWidget::North</enum>
+       </property>
+       <property name="currentIndex" >
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="sqlTab" >
+        <attribute name="title" >
+         <string>SQL</string>
+        </attribute>
+        <layout class="QGridLayout" >
+         <property name="margin" >
+          <number>9</number>
+         </property>
+         <property name="spacing" >
+          <number>6</number>
+         </property>
+         <item row="0" column="0" >
+          <widget class="QSplitter" name="rightSplitter" >
+           <property name="orientation" >
+            <enum>Qt::Vertical</enum>
+           </property>
+           <widget class="QWidget" name="layoutWidget" >
+            <layout class="QVBoxLayout" >
+             <property name="margin" >
+              <number>0</number>
+             </property>
+             <property name="spacing" >
+              <number>6</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="label_2" >
+               <property name="sizePolicy" >
+                <sizepolicy>
+                 <hsizetype>3</hsizetype>
+                 <vsizetype>0</vsizetype>
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text" >
+                <string>SQL &amp;Editor</string>
+               </property>
+               <property name="buddy" >
+                <cstring>sqlTextEdit</cstring>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTextEdit" name="sqlTextEdit" >
+               <property name="sizePolicy" >
+                <sizepolicy>
+                 <hsizetype>7</hsizetype>
+                 <vsizetype>7</vsizetype>
+                 <horstretch>1</horstretch>
+                 <verstretch>1</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize" >
+                <size>
+                 <width>0</width>
+                 <height>100</height>
+                </size>
+               </property>
+               <property name="maximumSize" >
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="baseSize" >
+                <size>
+                 <width>0</width>
+                 <height>100</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" >
+               <property name="margin" >
+                <number>0</number>
+               </property>
+               <property name="spacing" >
+                <number>6</number>
+               </property>
+               <item>
+                <spacer>
+                 <property name="orientation" >
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" >
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QPushButton" name="saveSqlButton" >
+                 <property name="enabled" >
+                  <bool>false</bool>
+                 </property>
+                 <property name="text" >
+                  <string>Sa&amp;ve</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="clearSqlButton" >
+                 <property name="enabled" >
+                  <bool>false</bool>
+                 </property>
+                 <property name="text" >
+                  <string>&amp;Clear</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="runSqlButton" >
+                 <property name="enabled" >
+                  <bool>false</bool>
+                 </property>
+                 <property name="text" >
+                  <string>&amp;Run SQL</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="layoutWidget" >
+            <layout class="QVBoxLayout" >
+             <property name="margin" >
+              <number>0</number>
+             </property>
+             <property name="spacing" >
+              <number>6</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="label_3" >
+               <property name="text" >
+                <string>Result - Table Edit</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTableView" name="resultTableView" >
+               <property name="alternatingRowColors" >
+                <bool>true</bool>
+               </property>
+               <property name="sortingEnabled" >
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="historyTab" >
+        <attribute name="title" >
+         <string>History</string>
+        </attribute>
+        <layout class="QGridLayout" >
+         <property name="margin" >
+          <number>9</number>
+         </property>
+         <property name="spacing" >
+          <number>6</number>
+         </property>
+         <item row="0" column="0" >
+          <widget class="QListWidget" name="historyList" />
+         </item>
+         <item row="1" column="0" >
+          <layout class="QHBoxLayout" >
+           <property name="margin" >
+            <number>0</number>
+           </property>
+           <property name="spacing" >
+            <number>6</number>
+           </property>
+           <item>
+            <spacer>
+             <property name="orientation" >
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" >
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="clearHistoryButton" >
+             <property name="enabled" >
+              <bool>false</bool>
+             </property>
+             <property name="text" >
+              <string>&amp;Clear</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="saveHistoryButton" >
+             <property name="enabled" >
+              <bool>false</bool>
+             </property>
+             <property name="text" >
+              <string>&amp;Save</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>783</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_Help" >
+    <property name="title" >
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="action_About" />
+   </widget>
+   <widget class="QMenu" name="menu_Edit" >
+    <property name="title" >
+     <string>&amp;Edit</string>
+    </property>
+    <addaction name="actionAdd_Table" />
+    <addaction name="actionDrop_Table" />
+   </widget>
+   <widget class="QMenu" name="menu_File" >
+    <property name="title" >
+     <string>&amp;File</string>
+    </property>
+    <addaction name="action_Open" />
+    <addaction name="actionOpen_SQL_File" />
+    <addaction name="actionSa_ve_SQL_File" />
+    <addaction name="action_New" />
+    <addaction name="actionC_lose" />
+    <addaction name="separator" />
+    <addaction name="action_Quit" />
+   </widget>
+   <addaction name="menu_File" />
+   <addaction name="menu_Edit" />
+   <addaction name="menu_Help" />
+  </widget>
+  <widget class="QStatusBar" name="statusbar" />
+  <widget class="QToolBar" name="toolBar" >
+   <property name="orientation" >
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <attribute name="toolBarArea" >
+    <number>4</number>
+   </attribute>
+   <addaction name="actionDrop_Table" />
+  </widget>
+  <action name="action_About" >
+   <property name="text" >
+    <string>&amp;About</string>
+   </property>
+  </action>
+  <action name="action_Open" >
+   <property name="text" >
+    <string>&amp;Open Database File...</string>
+   </property>
+  </action>
+  <action name="actionC_lose" >
+   <property name="text" >
+    <string>C&amp;lose Database File</string>
+   </property>
+  </action>
+  <action name="action_Quit" >
+   <property name="text" >
+    <string>&amp;Quit</string>
+   </property>
+  </action>
+  <action name="action_New" >
+   <property name="text" >
+    <string>&amp;New Database</string>
+   </property>
+  </action>
+  <action name="actionAdd_Table" >
+   <property name="text" >
+    <string>Add Table</string>
+   </property>
+  </action>
+  <action name="actionDrop_Table" >
+   <property name="icon" >
+    <iconset resource="../resources/sqliteadmin.qrc" >:/sqliteadmin/icons/editdelete.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Drop Table</string>
+   </property>
+  </action>
+  <action name="actionOpen_SQL_File" >
+   <property name="text" >
+    <string>Open &amp;SQL File...</string>
+   </property>
+  </action>
+  <action name="actionSa_ve_SQL_File" >
+   <property name="text" >
+    <string>Sa&amp;ve SQL File</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TableListWidget</class>
+   <extends>QListWidget</extends>
+   <header>TableListWidget.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../resources/sqliteadmin.qrc" />
+ </resources>
+ <connections>
+  <connection>
+   <sender>actionC_lose</sender>
+   <signal>triggered()</signal>
+   <receiver>tablesList</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>227</x>
+     <y>216</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionC_lose</sender>
+   <signal>triggered()</signal>
+   <receiver>fieldsTableView</receiver>
+   <slot>reset()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>227</x>
+     <y>572</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionC_lose</sender>
+   <signal>triggered()</signal>
+   <receiver>databaseLabel</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>227</x>
+     <y>86</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionC_lose</sender>
+   <signal>triggered()</signal>
+   <receiver>resultTableView</receiver>
+   <slot>reset()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>612</x>
+     <y>567</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>clearSqlButton</sender>
+   <signal>clicked()</signal>
+   <receiver>sqlTextEdit</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>642</x>
+     <y>425</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>626</x>
+     <y>336</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>saveSqlButton</sender>
+   <signal>clicked()</signal>
+   <receiver>actionSa_ve_SQL_File</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>561</x>
+     <y>422</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>clearHistoryButton</sender>
+   <signal>clicked()</signal>
+   <receiver>historyList</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>646</x>
+     <y>701</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>617</x>
+     <y>491</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
