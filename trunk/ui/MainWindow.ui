@@ -379,7 +379,7 @@
      <x>0</x>
      <y>0</y>
      <width>783</width>
-     <height>29</height>
+     <height>28</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Help" >
@@ -433,7 +433,7 @@
   </action>
   <action name="action_Open" >
    <property name="icon" >
-    <iconset resource="../resources/sqliteadmin.qrc" >:/icons/icons/fileopen.png</iconset>
+    <iconset resource="../src/resources/sqliteadmin.qrc" >:/icons/icons/fileopen.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Open Database File...</string>
@@ -441,7 +441,7 @@
   </action>
   <action name="actionC_lose" >
    <property name="icon" >
-    <iconset resource="../resources/sqliteadmin.qrc" >:/icons/icons/fileclose.png</iconset>
+    <iconset resource="../src/resources/sqliteadmin.qrc" >:/icons/icons/fileclose.png</iconset>
    </property>
    <property name="text" >
     <string>C&amp;lose Database File</string>
@@ -454,7 +454,7 @@
   </action>
   <action name="action_New" >
    <property name="icon" >
-    <iconset resource="../resources/sqliteadmin.qrc" >:/icons/icons/filenew.png</iconset>
+    <iconset resource="../src/resources/sqliteadmin.qrc" >:/icons/icons/filenew.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;New Database</string>
@@ -462,7 +462,7 @@
   </action>
   <action name="actionAdd_Table" >
    <property name="icon" >
-    <iconset resource="../resources/sqliteadmin.qrc" >:/icons/icons/edit_add.png</iconset>
+    <iconset resource="../src/resources/sqliteadmin.qrc" >:/icons/icons/edit_add.png</iconset>
    </property>
    <property name="text" >
     <string>Add Table</string>
@@ -470,7 +470,7 @@
   </action>
   <action name="actionDrop_Table" >
    <property name="icon" >
-    <iconset resource="../resources/sqliteadmin.qrc" >:/icons/icons/editdelete.png</iconset>
+    <iconset resource="../src/resources/sqliteadmin.qrc" >:/icons/icons/editdelete.png</iconset>
    </property>
    <property name="text" >
     <string>Drop Table</string>
@@ -483,7 +483,7 @@
   </action>
   <action name="actionSa_ve_SQL_File" >
    <property name="icon" >
-    <iconset resource="../resources/sqliteadmin.qrc" >:/icons/icons/filesave.png</iconset>
+    <iconset resource="../src/resources/sqliteadmin.qrc" >:/icons/icons/filesave.png</iconset>
    </property>
    <property name="text" >
     <string>Sa&amp;ve SQL File</string>
@@ -498,7 +498,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../resources/sqliteadmin.qrc" />
+  <include location="../src/resources/sqliteadmin.qrc" />
  </resources>
  <connections>
   <connection>
