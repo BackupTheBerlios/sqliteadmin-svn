@@ -14,3 +14,5 @@ SOURCES += sqliteadmin.cpp \
            TableListWidget.cpp 
 TARGET=../bin/sqliteadmin
 QT+=sql
+
+RESOURCES = resources/sqliteadmin.qrc
