@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'MainWindow.ui'
 **
-** Created: Sun Feb 18 19:38:38 2007
+** Created: Tue Feb 20 01:18:13 2007
 **      by: Qt User Interface Compiler version 4.2.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -98,21 +98,26 @@ public:
     action_About->setObjectName(QString::fromUtf8("action_About"));
     action_Open = new QAction(MainWindow);
     action_Open->setObjectName(QString::fromUtf8("action_Open"));
+    action_Open->setIcon(QIcon(QString::fromUtf8(":/icons/icons/fileopen.png")));
     actionC_lose = new QAction(MainWindow);
     actionC_lose->setObjectName(QString::fromUtf8("actionC_lose"));
+    actionC_lose->setIcon(QIcon(QString::fromUtf8(":/icons/icons/fileclose.png")));
     action_Quit = new QAction(MainWindow);
     action_Quit->setObjectName(QString::fromUtf8("action_Quit"));
     action_New = new QAction(MainWindow);
     action_New->setObjectName(QString::fromUtf8("action_New"));
+    action_New->setIcon(QIcon(QString::fromUtf8(":/icons/icons/filenew.png")));
     actionAdd_Table = new QAction(MainWindow);
     actionAdd_Table->setObjectName(QString::fromUtf8("actionAdd_Table"));
+    actionAdd_Table->setIcon(QIcon(QString::fromUtf8(":/icons/icons/edit_add.png")));
     actionDrop_Table = new QAction(MainWindow);
     actionDrop_Table->setObjectName(QString::fromUtf8("actionDrop_Table"));
-    actionDrop_Table->setIcon(QIcon(QString::fromUtf8(":/icons/editdelete.png")));
+    actionDrop_Table->setIcon(QIcon(QString::fromUtf8(":/icons/icons/editdelete.png")));
     actionOpen_SQL_File = new QAction(MainWindow);
     actionOpen_SQL_File->setObjectName(QString::fromUtf8("actionOpen_SQL_File"));
     actionSa_ve_SQL_File = new QAction(MainWindow);
     actionSa_ve_SQL_File->setObjectName(QString::fromUtf8("actionSa_ve_SQL_File"));
+    actionSa_ve_SQL_File->setIcon(QIcon(QString::fromUtf8(":/icons/icons/filesave.png")));
     centralwidget = new QWidget(MainWindow);
     centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
     gridLayout = new QGridLayout(centralwidget);
@@ -358,6 +363,11 @@ public:
     menu_File->addAction(actionC_lose);
     menu_File->addSeparator();
     menu_File->addAction(action_Quit);
+    toolBar->addAction(actionSa_ve_SQL_File);
+    toolBar->addAction(action_New);
+    toolBar->addAction(actionC_lose);
+    toolBar->addSeparator();
+    toolBar->addAction(actionAdd_Table);
     toolBar->addAction(actionDrop_Table);
 
     retranslateUi(MainWindow);

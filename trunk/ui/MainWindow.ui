@@ -419,6 +419,11 @@
    <attribute name="toolBarArea" >
     <number>4</number>
    </attribute>
+   <addaction name="actionSa_ve_SQL_File" />
+   <addaction name="action_New" />
+   <addaction name="actionC_lose" />
+   <addaction name="separator" />
+   <addaction name="actionAdd_Table" />
    <addaction name="actionDrop_Table" />
   </widget>
   <action name="action_About" >
@@ -427,11 +432,17 @@
    </property>
   </action>
   <action name="action_Open" >
+   <property name="icon" >
+    <iconset resource="../resources/sqliteadmin.qrc" >:/icons/icons/fileopen.png</iconset>
+   </property>
    <property name="text" >
     <string>&amp;Open Database File...</string>
    </property>
   </action>
   <action name="actionC_lose" >
+   <property name="icon" >
+    <iconset resource="../resources/sqliteadmin.qrc" >:/icons/icons/fileclose.png</iconset>
+   </property>
    <property name="text" >
     <string>C&amp;lose Database File</string>
    </property>
@@ -442,18 +453,24 @@
    </property>
   </action>
   <action name="action_New" >
+   <property name="icon" >
+    <iconset resource="../resources/sqliteadmin.qrc" >:/icons/icons/filenew.png</iconset>
+   </property>
    <property name="text" >
     <string>&amp;New Database</string>
    </property>
   </action>
   <action name="actionAdd_Table" >
+   <property name="icon" >
+    <iconset resource="../resources/sqliteadmin.qrc" >:/icons/icons/edit_add.png</iconset>
+   </property>
    <property name="text" >
     <string>Add Table</string>
    </property>
   </action>
   <action name="actionDrop_Table" >
    <property name="icon" >
-    <iconset resource="../resources/sqliteadmin.qrc" >:/sqliteadmin/icons/editdelete.png</iconset>
+    <iconset resource="../resources/sqliteadmin.qrc" >:/icons/icons/editdelete.png</iconset>
    </property>
    <property name="text" >
     <string>Drop Table</string>
@@ -465,6 +482,9 @@
    </property>
   </action>
   <action name="actionSa_ve_SQL_File" >
+   <property name="icon" >
+    <iconset resource="../resources/sqliteadmin.qrc" >:/icons/icons/filesave.png</iconset>
+   </property>
    <property name="text" >
     <string>Sa&amp;ve SQL File</string>
    </property>
