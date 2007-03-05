@@ -37,6 +37,9 @@ AdminWindow::AdminWindow(QWidget *parent, Qt::WFlags flags) : QMainWindow(parent
 	cCore = new ConnectionCore(this);
 // 	tablesList->setContextMenuPolicy(Qt::CustomContextMenu);
 	connectWidgets();
+	
+	tablesList->menu()->addAction(actionDrop_Table);
+	actionDrop_Table->setEnabled(FALSE);
 }
 
 void AdminWindow::connectWidgets()
@@ -45,17 +48,21 @@ void AdminWindow::connectWidgets()
 	connect( action_Quit, SIGNAL(triggered()), this, SLOT(close()) );
 	connect( actionC_lose, SIGNAL(triggered()), this, SLOT(closeDatabase()) );
 	connect( actionOpen_SQL_File, SIGNAL(triggered()), this, SLOT(sqlFileOpen()) );
-
+	
+	connect( actionDrop_Table, SIGNAL(triggered()), this, SLOT(dropTableRequest()) );
+	
 	connect( this, SIGNAL(sqlFileSelected(const QString &)), this, SLOT(openSqlFileNotification(const QString &)) );
 	connect( this, SIGNAL(dbFileSelected(const QString&)), cCore, SLOT(addConnection( const QString& )) );
 	connect( this, SIGNAL(dropTable(const QString&)), cCore, SLOT(dropTable(const QString&)) );
 	
 	connect( cCore, SIGNAL(databaseOpened( const QSqlError& )), this, SLOT(openDatabaseNotification( const QSqlError& )) );
 	connect( cCore, SIGNAL(databaseError(const QSqlError &)), this, SLOT(sqlError(const QSqlError&)) );
+	connect( cCore, SIGNAL(executedQuery( QSqlQueryModel* )), this, SLOT(queryResults( QSqlQueryModel* )) );
 	
 	connect( tablesList, SIGNAL(itemActivated(QListWidgetItem *)), this, SLOT(showTable( QListWidgetItem* )) );
 	connect( tablesList, SIGNAL(itemActivated(QListWidgetItem *)), this, SLOT(showFields( QListWidgetItem* )) );
- 	connect( tablesList, SIGNAL(dropTable(const QString&)), this, SLOT(dropTableRequest(const QString &)) );
+	connect( tablesList, SIGNAL(itemSelectionChanged()), this, SLOT(updateActionStatus()) );
+//  	connect( tablesList, SIGNAL(dropTable(const QString&)), this, SLOT(dropTableRequest(const QString &)) );
 	
 	connect( sqlTextEdit, SIGNAL(textChanged()), this, SLOT(updateSqlButtons()) );
 	
@@ -65,7 +72,7 @@ void AdminWindow::connectWidgets()
 	connect( runSqlButton, SIGNAL(clicked()), this, SLOT(runQuery()) );
 	connect( saveSqlButton, SIGNAL(clicked()), this, SLOT(sqlFileSave()) );
 // 	connect( cCore, SIGNAL(executedQuery( QSqlQuery* )), this, SLOT(queryResults( QSqlQuery* )) );
-	connect( cCore, SIGNAL(executedQuery( QSqlQueryModel* )), this, SLOT(queryResults( QSqlQueryModel* )) );
+
 	
 }
 
@@ -219,6 +226,7 @@ void AdminWindow::runQuery()
 		cCore->executeQuery(sqlTextEdit->textCursor().selectedText());
 	else
 		cCore->executeQuery(sqlTextEdit->toPlainText());
+	updateTablesList();
 }
 
 
@@ -235,11 +243,11 @@ void AdminWindow::queryResults( QSqlQueryModel *model)
 	}
 }
 
-void AdminWindow::dropTableRequest( const QString &tableName )
+void AdminWindow::dropTableRequest( /*const QString &tableName*/ )
 {
-	if (QMessageBox::question(this, tr("Drop Table"), tr("Are you sure you want to DROP table %1").arg(tableName), QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Cancel) == QMessageBox::Ok)
+	if (QMessageBox::question(this, tr("Drop Table"), tr("Are you sure you want to DROP table %1").arg(tablesList->currentItem()->text()), QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Cancel) == QMessageBox::Ok)
 	{
-		emit dropTable(tableName);
+		emit dropTable(tablesList->currentItem()->text()/*tableName*/);
 		updateTablesList();
 	}
 }
@@ -253,4 +261,9 @@ void AdminWindow::historyItemSelected(QListWidgetItem *item)
 {
 	sqlTextEdit->append(item->text());
 	centalTabWidget->setCurrentIndex(0);
+}
+
+void AdminWindow::updateActionStatus()
+{
+	actionDrop_Table->setEnabled(tablesList->currentItem() != 0 );
 }

@@ -49,8 +49,9 @@ class AdminWindow : public QMainWindow, public Ui::MainWindow
 		void showFields( QListWidgetItem *);
 		void runQuery();
 		void closeDatabase();
-		void dropTableRequest(const QString&);
+		void dropTableRequest();
 		void historyItemSelected(QListWidgetItem *);
+		void updateActionStatus();
 
 		
 	signals:

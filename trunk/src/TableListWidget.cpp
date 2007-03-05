@@ -19,17 +19,18 @@
  ***************************************************************************/
 #include <QMenu>
 #include <QContextMenuEvent>
+#include <QSignalMapper>
 #include <QPoint>
 #include "TableListWidget.h"
 
 TableListWidget::TableListWidget(QWidget *parent = 0) : QListWidget(parent)
 {
 	popupMenu = new QMenu(this);
-	connect( popupMenu->addAction(tr("&Edit Table Schema")), SIGNAL(triggered()), this, SLOT(editActionTriggered()) );
-	connect( popupMenu->addAction(tr("&Show Table SQL")), SIGNAL(triggered()), this, SLOT(showActionTriggered()) );
-	connect( popupMenu->addAction(tr("&Copy Table Schema")), SIGNAL(triggered()), this, SLOT(tableCopyActionTriggered()) );
-	popupMenu->addSeparator();
-	connect( popupMenu->addAction(tr("&Drop Table")), SIGNAL(triggered()), this, SLOT(dropActionTriggered()) );
+// 	connect( popupMenu->addAction(tr("&Edit Table Schema")), SIGNAL(triggered()), this, SLOT(editActionTriggered()) );
+// 	connect( popupMenu->addAction(tr("&Show Table SQL")), SIGNAL(triggered()), this, SLOT(showActionTriggered()) );
+// 	connect( popupMenu->addAction(tr("&Copy Table Schema")), SIGNAL(triggered()), this, SLOT(tableCopyActionTriggered()) );
+// 	popupMenu->addSeparator();
+// 	connect( popupMenu->addAction(tr("&Drop Table")), SIGNAL(triggered()), this, SLOT(dropActionTriggered()) );
 }
 
 void TableListWidget::contextMenuEvent( QContextMenuEvent *event)

@@ -93,8 +93,5 @@ void ConnectionCore::executeQuery( const QString &sqlQuery)
 void ConnectionCore::dropTable(const QString &tableName)
 {
 	executeQuery(QString("DROP TABLE %1").arg(tableName));
-	if (db.lastError().type() != QSqlError::NoError)
-		emit droppedTable(tableName);
-	else
-		emit databaseError(db.lastError());
+	emit droppedTable(tableName);
 }
