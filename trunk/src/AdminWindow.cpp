@@ -39,6 +39,7 @@ AdminWindow::AdminWindow(QWidget *parent, Qt::WFlags flags) : QMainWindow(parent
 	connectWidgets();
 	
 	tablesList->menu()->addAction(actionDrop_Table);
+	actionSa_ve_SQL_File->setEnabled(FALSE);
 	actionDrop_Table->setEnabled(FALSE);
 }
 
@@ -48,7 +49,7 @@ void AdminWindow::connectWidgets()
 	connect( action_Quit, SIGNAL(triggered()), this, SLOT(close()) );
 	connect( actionC_lose, SIGNAL(triggered()), this, SLOT(closeDatabase()) );
 	connect( actionOpen_SQL_File, SIGNAL(triggered()), this, SLOT(sqlFileOpen()) );
-	
+	connect( actionSa_ve_SQL_File, SIGNAL(triggered()), this, SLOT(sqlFileSave()) );
 	connect( actionDrop_Table, SIGNAL(triggered()), this, SLOT(dropTableRequest()) );
 	
 	connect( this, SIGNAL(sqlFileSelected(const QString &)), this, SLOT(openSqlFileNotification(const QString &)) );
@@ -64,16 +65,15 @@ void AdminWindow::connectWidgets()
 	connect( tablesList, SIGNAL(itemSelectionChanged()), this, SLOT(updateActionStatus()) );
 //  	connect( tablesList, SIGNAL(dropTable(const QString&)), this, SLOT(dropTableRequest(const QString &)) );
 	
-	connect( sqlTextEdit, SIGNAL(textChanged()), this, SLOT(updateSqlButtons()) );
+// 	connect( sqlTextEdit, SIGNAL(textChanged()), this, SLOT(updateSqlButtons()) );
+	connect( sqlTextEdit, SIGNAL(textChanged()), this, SLOT(updateActionStatus()) );
 	
 	connect( historyList, SIGNAL(itemSelectionChanged()), this, SLOT(updateHistoryButtons()) );
 	connect( historyList, SIGNAL(itemDoubleClicked(QListWidgetItem *)), this, SLOT(historyItemSelected(QListWidgetItem*)) );
 	
 	connect( runSqlButton, SIGNAL(clicked()), this, SLOT(runQuery()) );
-	connect( saveSqlButton, SIGNAL(clicked()), this, SLOT(sqlFileSave()) );
-// 	connect( cCore, SIGNAL(executedQuery( QSqlQuery* )), this, SLOT(queryResults( QSqlQuery* )) );
-
 	
+// 	connect( saveSqlButton, SIGNAL(clicked()), this, SLOT(sqlFileSave()) );
 }
 
 
@@ -265,5 +265,6 @@ void AdminWindow::historyItemSelected(QListWidgetItem *item)
 
 void AdminWindow::updateActionStatus()
 {
-	actionDrop_Table->setEnabled(tablesList->currentItem() != 0 );
+	actionDrop_Table->setEnabled(tablesList->currentItem() != 0);
+	actionSa_ve_SQL_File->setEnabled(!sqlTextEdit->toPlainText().isEmpty());
 }

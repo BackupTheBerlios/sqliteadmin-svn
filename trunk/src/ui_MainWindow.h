@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'MainWindow.ui'
 **
-** Created: Tue Feb 20 01:18:13 2007
+** Created: Mon Mar 5 18:52:05 2007
 **      by: Qt User Interface Compiler version 4.2.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -45,6 +45,8 @@ public:
     QAction *actionDrop_Table;
     QAction *actionOpen_SQL_File;
     QAction *actionSa_ve_SQL_File;
+    QAction *action_Run_SQL;
+    QAction *action_Clear_SQL_Editor;
     QWidget *centralwidget;
     QGridLayout *gridLayout;
     QSplitter *mainSplitter;
@@ -118,6 +120,12 @@ public:
     actionSa_ve_SQL_File = new QAction(MainWindow);
     actionSa_ve_SQL_File->setObjectName(QString::fromUtf8("actionSa_ve_SQL_File"));
     actionSa_ve_SQL_File->setIcon(QIcon(QString::fromUtf8(":/icons/icons/filesave.png")));
+    action_Run_SQL = new QAction(MainWindow);
+    action_Run_SQL->setObjectName(QString::fromUtf8("action_Run_SQL"));
+    action_Run_SQL->setIcon(QIcon(QString::fromUtf8(":/icons/slick/run.png")));
+    action_Clear_SQL_Editor = new QAction(MainWindow);
+    action_Clear_SQL_Editor->setObjectName(QString::fromUtf8("action_Clear_SQL_Editor"));
+    action_Clear_SQL_Editor->setIcon(QIcon(QString::fromUtf8(":/icons/slick/cleareditor.png")));
     centralwidget = new QWidget(MainWindow);
     centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
     gridLayout = new QGridLayout(centralwidget);
@@ -333,7 +341,7 @@ public:
     MainWindow->setCentralWidget(centralwidget);
     menubar = new QMenuBar(MainWindow);
     menubar->setObjectName(QString::fromUtf8("menubar"));
-    menubar->setGeometry(QRect(0, 0, 783, 29));
+    menubar->setGeometry(QRect(0, 0, 838, 28));
     menu_Help = new QMenu(menubar);
     menu_Help->setObjectName(QString::fromUtf8("menu_Help"));
     menu_Edit = new QMenu(menubar);
@@ -363,16 +371,20 @@ public:
     menu_File->addAction(actionC_lose);
     menu_File->addSeparator();
     menu_File->addAction(action_Quit);
-    toolBar->addAction(actionSa_ve_SQL_File);
+    toolBar->addAction(action_Open);
     toolBar->addAction(action_New);
     toolBar->addAction(actionC_lose);
     toolBar->addSeparator();
     toolBar->addAction(actionAdd_Table);
     toolBar->addAction(actionDrop_Table);
+    toolBar->addSeparator();
+    toolBar->addAction(actionSa_ve_SQL_File);
+    toolBar->addAction(action_Clear_SQL_Editor);
+    toolBar->addAction(action_Run_SQL);
 
     retranslateUi(MainWindow);
 
-    QSize size(783, 767);
+    QSize size(838, 767);
     size = size.expandedTo(MainWindow->minimumSizeHint());
     MainWindow->resize(size);
 
@@ -402,10 +414,12 @@ public:
     actionDrop_Table->setText(QApplication::translate("MainWindow", "Drop Table", 0, QApplication::UnicodeUTF8));
     actionOpen_SQL_File->setText(QApplication::translate("MainWindow", "Open &SQL File...", 0, QApplication::UnicodeUTF8));
     actionSa_ve_SQL_File->setText(QApplication::translate("MainWindow", "Sa&ve SQL File", 0, QApplication::UnicodeUTF8));
+    action_Run_SQL->setText(QApplication::translate("MainWindow", "&Run SQL", 0, QApplication::UnicodeUTF8));
+    action_Clear_SQL_Editor->setText(QApplication::translate("MainWindow", "&Clear SQL Editor", 0, QApplication::UnicodeUTF8));
     databaseLabel->setText(QApplication::translate("MainWindow", "Database", 0, QApplication::UnicodeUTF8));
     tableLabel->setText(QString());
     tableTabWidget->setTabText(tableTabWidget->indexOf(fieldTab), QApplication::translate("MainWindow", "Fields", 0, QApplication::UnicodeUTF8));
-    label_2->setText(QApplication::translate("MainWindow", "SQL &Editor", 0, QApplication::UnicodeUTF8));
+    label_2->setText(QApplication::translate("MainWindow", "SQL Edi&tor", 0, QApplication::UnicodeUTF8));
     saveSqlButton->setText(QApplication::translate("MainWindow", "Sa&ve", 0, QApplication::UnicodeUTF8));
     clearSqlButton->setText(QApplication::translate("MainWindow", "&Clear", 0, QApplication::UnicodeUTF8));
     runSqlButton->setText(QApplication::translate("MainWindow", "&Run SQL", 0, QApplication::UnicodeUTF8));

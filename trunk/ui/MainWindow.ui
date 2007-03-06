@@ -186,7 +186,7 @@
                 </sizepolicy>
                </property>
                <property name="text" >
-                <string>SQL &amp;Editor</string>
+                <string>SQL Edi&amp;tor</string>
                </property>
                <property name="buddy" >
                 <cstring>sqlTextEdit</cstring>
@@ -419,12 +419,16 @@
    <attribute name="toolBarArea" >
     <number>4</number>
    </attribute>
-   <addaction name="actionSa_ve_SQL_File" />
+   <addaction name="action_Open" />
    <addaction name="action_New" />
    <addaction name="actionC_lose" />
    <addaction name="separator" />
    <addaction name="actionAdd_Table" />
    <addaction name="actionDrop_Table" />
+   <addaction name="separator" />
+   <addaction name="actionSa_ve_SQL_File" />
+   <addaction name="action_Clear_SQL_Editor" />
+   <addaction name="action_Run_SQL" />
   </widget>
   <action name="action_About" >
    <property name="text" >
@@ -487,6 +491,22 @@
    </property>
    <property name="text" >
     <string>Sa&amp;ve SQL File</string>
+   </property>
+  </action>
+  <action name="action_Run_SQL" >
+   <property name="icon" >
+    <iconset resource="../src/resources/sqliteadmin.qrc" >:/icons/slick/run.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Run SQL</string>
+   </property>
+  </action>
+  <action name="action_Clear_SQL_Editor" >
+   <property name="icon" >
+    <iconset resource="../src/resources/sqliteadmin.qrc" >:/icons/slick/cleareditor.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Clear SQL Editor</string>
    </property>
   </action>
  </widget>

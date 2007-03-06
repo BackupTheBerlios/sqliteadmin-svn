@@ -7,5 +7,8 @@
         <file>icons/filenew.png</file>
         <file>icons/fileopen.png</file>
         <file>icons/filesave.png</file>
+        <file>slick/cleareditor.png</file>
+        <file>slick/fileopen.png</file>
+        <file>slick/run.png</file>
     </qresource>
 </RCC>
