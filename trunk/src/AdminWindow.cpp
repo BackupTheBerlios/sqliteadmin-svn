@@ -28,6 +28,9 @@
 #include <QFile>
 #include "AdminWindow.h"
 #include "ConnectionCore.h"
+#include "EditTableDialog.h"
+#include "SQLiteFieldModel.h"
+		
 		
 AdminWindow::AdminWindow(QWidget *parent, Qt::WFlags flags) : QMainWindow(parent, flags)
 {
@@ -35,12 +38,16 @@ AdminWindow::AdminWindow(QWidget *parent, Qt::WFlags flags) : QMainWindow(parent
 	mainSplitter->setStretchFactor(1,1);
 	rightSplitter->setStretchFactor(1,1);
 	cCore = new ConnectionCore(this);
+	tableDialog = new EditTableDialog(this);
 // 	tablesList->setContextMenuPolicy(Qt::CustomContextMenu);
 	connectWidgets();
 	
 	tablesList->menu()->addAction(actionDrop_Table);
+	tablesList->menu()->addAction(actionEdit_Ta_ble);
+	
 	actionSa_ve_SQL_File->setEnabled(FALSE);
 	actionDrop_Table->setEnabled(FALSE);
+	actionEdit_Ta_ble->setEnabled(FALSE);
 }
 
 void AdminWindow::connectWidgets()
@@ -51,6 +58,7 @@ void AdminWindow::connectWidgets()
 	connect( actionOpen_SQL_File, SIGNAL(triggered()), this, SLOT(sqlFileOpen()) );
 	connect( actionSa_ve_SQL_File, SIGNAL(triggered()), this, SLOT(sqlFileSave()) );
 	connect( actionDrop_Table, SIGNAL(triggered()), this, SLOT(dropTableRequest()) );
+	connect( actionEdit_Ta_ble, SIGNAL(triggered()), this, SLOT(showTableDialog()) );
 	
 	connect( this, SIGNAL(sqlFileSelected(const QString &)), this, SLOT(openSqlFileNotification(const QString &)) );
 	connect( this, SIGNAL(dbFileSelected(const QString&)), cCore, SLOT(addConnection( const QString& )) );
@@ -72,6 +80,7 @@ void AdminWindow::connectWidgets()
 	connect( historyList, SIGNAL(itemDoubleClicked(QListWidgetItem *)), this, SLOT(historyItemSelected(QListWidgetItem*)) );
 	
 	connect( runSqlButton, SIGNAL(clicked()), this, SLOT(runQuery()) );
+	connect( tableDialog, SIGNAL(sqliteFields(const QHash<int, SqliteField>)), this, SLOT(editTable(const QHash<int, SqliteField>)) );
 	
 // 	connect( saveSqlButton, SIGNAL(clicked()), this, SLOT(sqlFileSave()) );
 }
@@ -161,26 +170,18 @@ void AdminWindow::closeDatabase()
 void AdminWindow::showFields(QListWidgetItem *selectedItem)
 {
 	 QSqlRecord rec = cCore->currentDatabase().record(selectedItem->text());
-	 QStandardItemModel *model = new QStandardItemModel(fieldsTableView);
+	 SQLiteFieldModel *model = new SQLiteFieldModel((QTableView*)fieldsTableView);
 	
 	 model->insertRows(0, rec.count());
-	 model->insertColumns(0, 7);
-	
-	 model->setHeaderData(0, Qt::Horizontal, "Fieldname");
-	 model->setHeaderData(1, Qt::Horizontal, "Type");
-	 model->setHeaderData(2, Qt::Horizontal, "Length");
-	 model->setHeaderData(3, Qt::Horizontal, "Precision");
-	 model->setHeaderData(4, Qt::Horizontal, "Required");
-	 model->setHeaderData(5, Qt::Horizontal, "AutoValue");
-	 model->setHeaderData(6, Qt::Horizontal, "DefaultValue");
-	
+	 
 	
 	 for (int i = 0; i < rec.count(); ++i) {
 		  QSqlField fld = rec.field(i);
 		  model->setData(model->index(i, 0), fld.name());
-		  model->setData(model->index(i, 1), fld.typeID() == -1
-					 ? QString(QVariant::typeToName(fld.type()))
-					 : QString("%1 (%2)").arg(QVariant::typeToName(fld.type())).arg(fld.typeID()));
+// 		  model->setData(model->index(i, 1), fld.typeID() == -1
+// 					 ? QString(QVariant::typeToName(fld.type()))
+// 					 : QString("%1 (%2)").arg(QVariant::typeToName(fld.type())).arg(fld.typeID()));
+		  model->setData(model->index(i, 1), getTypeName(fld));
 		  model->setData(model->index(i, 2), fld.length());
 		  model->setData(model->index(i, 3), fld.precision());
 		  model->setData(model->index(i, 4), fld.requiredStatus() == -1 ? QVariant("?")
@@ -194,6 +195,18 @@ void AdminWindow::showFields(QListWidgetItem *selectedItem)
 	 
 	 fieldsTableView->setModel(model);
     fieldsTableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+}
+
+QString AdminWindow::getTypeName(QSqlField fld)
+{
+	if (QString(QVariant::typeToName(fld.type())) == QString("QString"))
+		return QString("Text");
+	else if(QString(QVariant::typeToName(fld.type())) == QString("int"))
+		return QString("Integer");
+	else if(QString(QVariant::typeToName(fld.type())) == QString("double"))
+		return QString("Real");
+	else
+		return tr(QVariant::typeToName(fld.type()));
 }
 
 void AdminWindow::showTable( QListWidgetItem *selectedItem ) 
@@ -266,5 +279,33 @@ void AdminWindow::historyItemSelected(QListWidgetItem *item)
 void AdminWindow::updateActionStatus()
 {
 	actionDrop_Table->setEnabled(tablesList->currentItem() != 0);
+	actionEdit_Ta_ble->setEnabled(tablesList->currentItem() != 0);
 	actionSa_ve_SQL_File->setEnabled(!sqlTextEdit->toPlainText().isEmpty());
+}
+
+void AdminWindow::showTableDialog()
+{
+	showFields(tablesList->currentItem());
+	tableDialog->setTableName(tablesList->currentItem()->text());
+	tableDialog->setTableModel((SQLiteFieldModel*)fieldsTableView->model());
+	tableDialog->show();
+}
+
+void AdminWindow::editTable(const QHash<int, SqliteField> fields)
+{
+// 	qWarning("editTable");
+	foreach(SqliteField field, fields)
+	{
+		switch(field.status)
+		{
+			case STATUS_MODIFIED:
+				qWarning(field.fieldName.toAscii() + " is modified");
+				break;
+				
+			case STATUS_ADDED:
+// 				qWarning(field.fieldName.toAscii() + " is added");
+				cCore->addTableField(tablesList->currentItem()->text(), &field);
+				break;
+		}
+	}
 }

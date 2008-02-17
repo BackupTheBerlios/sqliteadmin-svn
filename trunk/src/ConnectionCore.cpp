@@ -17,8 +17,10 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+#include <QStandardItemModel>
+#include <QAbstractItemView>
 #include "ConnectionCore.h"
-		
+	
 ConnectionCore::ConnectionCore(QObject *parent, const QString &driver) : QObject(parent)
 {
 	dbCount = 0;
@@ -94,4 +96,45 @@ void ConnectionCore::dropTable(const QString &tableName)
 {
 	executeQuery(QString("DROP TABLE %1").arg(tableName));
 	emit droppedTable(tableName);
+}
+
+void ConnectionCore::buildTableModel( const QString &tableName, QAbstractItemView *parentWidget)
+{
+	QSqlRecord rec = currentDatabase().record(tableName);
+	QStandardItemModel *model = new QStandardItemModel((QObject*)parentWidget);
+	
+	model->insertRows(0, rec.count());
+	model->insertColumns(0, 7);
+	
+	model->setHeaderData(0, Qt::Horizontal, tr("Fieldname"));
+	model->setHeaderData(1, Qt::Horizontal, tr("Type"));
+	model->setHeaderData(2, Qt::Horizontal, tr("Length"));
+	model->setHeaderData(3, Qt::Horizontal, tr("Precision"));
+	model->setHeaderData(4, Qt::Horizontal, tr("Not NULL"));
+	model->setHeaderData(5, Qt::Horizontal, tr("AutoValue"));
+	model->setHeaderData(6, Qt::Horizontal, tr("DefaultValue"));
+		
+	for (int i = 0; i < rec.count(); ++i) {
+		QSqlField fld = rec.field(i);
+		model->setData(model->index(i, 0), fld.name());
+		model->setData(model->index(i, 1), fld.typeID() == -1
+				 ? QString(QVariant::typeToName(fld.type()))
+				 : QString("%1 (%2)").arg(QVariant::typeToName(fld.type())).arg(fld.typeID()));
+		model->setData(model->index(i, 2), fld.length());
+		model->setData(model->index(i, 3), fld.precision());
+		model->setData(model->index(i, 4), fld.requiredStatus() == -1 ? QVariant("?")
+			 : QVariant(bool(fld.requiredStatus())));
+		model->setData(model->index(i, 5), fld.isAutoValue());
+		model->setData(model->index(i, 6), fld.defaultValue());
+	}
+}
+
+void ConnectionCore::addTableField(const QString &tableName, SqliteField *field)
+{
+	QString notNull = (field->fieldRequired) ? "NOT NULL" : "";
+	QString autoIncrement = (field->fieldAuto) ? "PRIMARY KEY AUTOINCREMENT" : "";
+	
+	QString query = QString("ALTER TABLE %1 ADD %2 %3 %4 %5").arg(tableName).arg(field->fieldName).arg(field->fieldType).arg(notNull).arg(autoIncrement);
+	qWarning(query.toAscii());
+// 	executeQuery(query);
 }

@@ -7,12 +7,19 @@ HEADERS += AdminWindow.h \
            MainWindow.h \
            ui_mainwindow.h \
            ConnectionCore.h \
-           TableListWidget.h 
+           TableListWidget.h \
+           EditTableDialog.h  \
+           SQLiteFieldModel.h \
+           FieldTableWidget.h \
+           SQLiteDefs.h
 SOURCES += sqliteadmin.cpp \
            AdminWindow.cpp \
            ConnectionCore.cpp \
-           TableListWidget.cpp 
-TARGET=../bin/sqliteadmin
-QT+=sql
-
+           TableListWidget.cpp \
+           EditTableDialog.cpp  \
+           SQLiteFieldModel.cpp \
+           FieldTableWidget.cpp
+TARGET = ../bin/sqliteadmin
+QT+= sql
 RESOURCES = resources/sqliteadmin.qrc
+CONFIG += debug

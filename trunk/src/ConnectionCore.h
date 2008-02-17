@@ -23,6 +23,10 @@
 
 #include <QObject>
 #include <QtSql>
+#include "SQLiteDefs.h"
+		
+class QAbstractItemView;
+
 		
 class ConnectionCore : public QObject
 {
@@ -38,7 +42,9 @@ class ConnectionCore : public QObject
 		void removeConnection(const QString&);
 		void executeQuery(const QString&);
 		void dropTable(const QString&);
-				
+		void buildTableModel(const QString&, QAbstractItemView*);
+		void addTableField(const QString&, SqliteField*);
+		
 	signals:
 		void databaseOpened(const QSqlError&);
 		void databaseClosed();

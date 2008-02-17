@@ -379,9 +379,21 @@
      <x>0</x>
      <y>0</y>
      <width>838</width>
-     <height>28</height>
+     <height>29</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu_File" >
+    <property name="title" >
+     <string>&amp;File</string>
+    </property>
+    <addaction name="action_Open" />
+    <addaction name="actionOpen_SQL_File" />
+    <addaction name="actionSa_ve_SQL_File" />
+    <addaction name="action_New" />
+    <addaction name="actionC_lose" />
+    <addaction name="separator" />
+    <addaction name="action_Quit" />
+   </widget>
    <widget class="QMenu" name="menu_Help" >
     <property name="title" >
      <string>&amp;Help</string>
@@ -394,18 +406,7 @@
     </property>
     <addaction name="actionAdd_Table" />
     <addaction name="actionDrop_Table" />
-   </widget>
-   <widget class="QMenu" name="menu_File" >
-    <property name="title" >
-     <string>&amp;File</string>
-    </property>
-    <addaction name="action_Open" />
-    <addaction name="actionOpen_SQL_File" />
-    <addaction name="actionSa_ve_SQL_File" />
-    <addaction name="action_New" />
-    <addaction name="actionC_lose" />
-    <addaction name="separator" />
-    <addaction name="action_Quit" />
+    <addaction name="actionEdit_Ta_ble" />
    </widget>
    <addaction name="menu_File" />
    <addaction name="menu_Edit" />
@@ -425,6 +426,7 @@
    <addaction name="separator" />
    <addaction name="actionAdd_Table" />
    <addaction name="actionDrop_Table" />
+   <addaction name="actionEdit_Ta_ble" />
    <addaction name="separator" />
    <addaction name="actionSa_ve_SQL_File" />
    <addaction name="action_Clear_SQL_Editor" />
@@ -507,6 +509,14 @@
    </property>
    <property name="text" >
     <string>&amp;Clear SQL Editor</string>
+   </property>
+  </action>
+  <action name="actionEdit_Ta_ble" >
+   <property name="icon" >
+    <iconset resource="../src/resources/sqliteadmin.qrc" >:/icons/icons/edit.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Edit Ta&amp;ble</string>
    </property>
   </action>
  </widget>

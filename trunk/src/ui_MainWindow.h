@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'MainWindow.ui'
 **
-** Created: Mon Mar 5 18:52:05 2007
+** Created: Sat Mar 17 12:16:53 2007
 **      by: Qt User Interface Compiler version 4.2.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -47,6 +47,7 @@ public:
     QAction *actionSa_ve_SQL_File;
     QAction *action_Run_SQL;
     QAction *action_Clear_SQL_Editor;
+    QAction *actionEdit_Ta_ble;
     QWidget *centralwidget;
     QGridLayout *gridLayout;
     QSplitter *mainSplitter;
@@ -87,9 +88,9 @@ public:
     QPushButton *clearHistoryButton;
     QPushButton *saveHistoryButton;
     QMenuBar *menubar;
+    QMenu *menu_File;
     QMenu *menu_Help;
     QMenu *menu_Edit;
-    QMenu *menu_File;
     QStatusBar *statusbar;
     QToolBar *toolBar;
 
@@ -126,6 +127,9 @@ public:
     action_Clear_SQL_Editor = new QAction(MainWindow);
     action_Clear_SQL_Editor->setObjectName(QString::fromUtf8("action_Clear_SQL_Editor"));
     action_Clear_SQL_Editor->setIcon(QIcon(QString::fromUtf8(":/icons/slick/cleareditor.png")));
+    actionEdit_Ta_ble = new QAction(MainWindow);
+    actionEdit_Ta_ble->setObjectName(QString::fromUtf8("actionEdit_Ta_ble"));
+    actionEdit_Ta_ble->setIcon(QIcon(QString::fromUtf8(":/icons/icons/edit.png")));
     centralwidget = new QWidget(MainWindow);
     centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
     gridLayout = new QGridLayout(centralwidget);
@@ -341,13 +345,13 @@ public:
     MainWindow->setCentralWidget(centralwidget);
     menubar = new QMenuBar(MainWindow);
     menubar->setObjectName(QString::fromUtf8("menubar"));
-    menubar->setGeometry(QRect(0, 0, 838, 28));
+    menubar->setGeometry(QRect(0, 0, 838, 29));
+    menu_File = new QMenu(menubar);
+    menu_File->setObjectName(QString::fromUtf8("menu_File"));
     menu_Help = new QMenu(menubar);
     menu_Help->setObjectName(QString::fromUtf8("menu_Help"));
     menu_Edit = new QMenu(menubar);
     menu_Edit->setObjectName(QString::fromUtf8("menu_Edit"));
-    menu_File = new QMenu(menubar);
-    menu_File->setObjectName(QString::fromUtf8("menu_File"));
     MainWindow->setMenuBar(menubar);
     statusbar = new QStatusBar(MainWindow);
     statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -361,9 +365,6 @@ public:
     menubar->addAction(menu_File->menuAction());
     menubar->addAction(menu_Edit->menuAction());
     menubar->addAction(menu_Help->menuAction());
-    menu_Help->addAction(action_About);
-    menu_Edit->addAction(actionAdd_Table);
-    menu_Edit->addAction(actionDrop_Table);
     menu_File->addAction(action_Open);
     menu_File->addAction(actionOpen_SQL_File);
     menu_File->addAction(actionSa_ve_SQL_File);
@@ -371,12 +372,17 @@ public:
     menu_File->addAction(actionC_lose);
     menu_File->addSeparator();
     menu_File->addAction(action_Quit);
+    menu_Help->addAction(action_About);
+    menu_Edit->addAction(actionAdd_Table);
+    menu_Edit->addAction(actionDrop_Table);
+    menu_Edit->addAction(actionEdit_Ta_ble);
     toolBar->addAction(action_Open);
     toolBar->addAction(action_New);
     toolBar->addAction(actionC_lose);
     toolBar->addSeparator();
     toolBar->addAction(actionAdd_Table);
     toolBar->addAction(actionDrop_Table);
+    toolBar->addAction(actionEdit_Ta_ble);
     toolBar->addSeparator();
     toolBar->addAction(actionSa_ve_SQL_File);
     toolBar->addAction(action_Clear_SQL_Editor);
@@ -416,6 +422,7 @@ public:
     actionSa_ve_SQL_File->setText(QApplication::translate("MainWindow", "Sa&ve SQL File", 0, QApplication::UnicodeUTF8));
     action_Run_SQL->setText(QApplication::translate("MainWindow", "&Run SQL", 0, QApplication::UnicodeUTF8));
     action_Clear_SQL_Editor->setText(QApplication::translate("MainWindow", "&Clear SQL Editor", 0, QApplication::UnicodeUTF8));
+    actionEdit_Ta_ble->setText(QApplication::translate("MainWindow", "Edit Ta&ble", 0, QApplication::UnicodeUTF8));
     databaseLabel->setText(QApplication::translate("MainWindow", "Database", 0, QApplication::UnicodeUTF8));
     tableLabel->setText(QString());
     tableTabWidget->setTabText(tableTabWidget->indexOf(fieldTab), QApplication::translate("MainWindow", "Fields", 0, QApplication::UnicodeUTF8));
@@ -428,9 +435,9 @@ public:
     clearHistoryButton->setText(QApplication::translate("MainWindow", "&Clear", 0, QApplication::UnicodeUTF8));
     saveHistoryButton->setText(QApplication::translate("MainWindow", "&Save", 0, QApplication::UnicodeUTF8));
     centalTabWidget->setTabText(centalTabWidget->indexOf(historyTab), QApplication::translate("MainWindow", "History", 0, QApplication::UnicodeUTF8));
+    menu_File->setTitle(QApplication::translate("MainWindow", "&File", 0, QApplication::UnicodeUTF8));
     menu_Help->setTitle(QApplication::translate("MainWindow", "&Help", 0, QApplication::UnicodeUTF8));
     menu_Edit->setTitle(QApplication::translate("MainWindow", "&Edit", 0, QApplication::UnicodeUTF8));
-    menu_File->setTitle(QApplication::translate("MainWindow", "&File", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

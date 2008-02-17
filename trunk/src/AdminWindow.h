@@ -21,11 +21,13 @@
 #define ADMINWINDOW_H
 
 #include <QtGui/QMainWindow>
-#include "ui_MainWindow.h"
 #include <QtSql>
+#include "ui_MainWindow.h"
+#include "SQLiteDefs.h"
 		
 class ConnectionCore;
-		
+class EditTableDialog;
+class QStandardItemModel;
 		
 class AdminWindow : public QMainWindow, public Ui::MainWindow
 {
@@ -39,6 +41,7 @@ class AdminWindow : public QMainWindow, public Ui::MainWindow
 		void updateSqlButtons();
 		void updateHistoryButtons();
 		void queryResults(QSqlQueryModel*);
+// 		void acceptEdit();
 		
  	protected slots:
  		void dbFileOpen();
@@ -52,7 +55,8 @@ class AdminWindow : public QMainWindow, public Ui::MainWindow
 		void dropTableRequest();
 		void historyItemSelected(QListWidgetItem *);
 		void updateActionStatus();
-
+		void showTableDialog();
+		void editTable(const QHash<int, SqliteField>);
 		
 	signals:
 		void dbFileSelected(const QString&);
@@ -61,6 +65,7 @@ class AdminWindow : public QMainWindow, public Ui::MainWindow
 		void editTable(const QString &);
 		void showTableSchema(const QString &);
 		void dropTable(const QString &);
+		void tableFieldsModel(QStandardItemModel *);
 		
 	protected:
 		ConnectionCore *cCore;
@@ -68,6 +73,8 @@ class AdminWindow : public QMainWindow, public Ui::MainWindow
 	private:
 		void connectWidgets();
 		void updateTablesList();
+		static QString getTypeName(QSqlField);
+		EditTableDialog *tableDialog;
 };
 
 #endif
