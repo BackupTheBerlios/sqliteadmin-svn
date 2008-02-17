@@ -1,0 +1,239 @@
+<ui version="4.0" >
+ <class>EditTableDialog</class>
+ <widget class="QDialog" name="EditTableDialog" >
+  <property name="windowModality" >
+   <enum>Qt::WindowModal</enum>
+  </property>
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>757</width>
+    <height>406</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Table Edit</string>
+  </property>
+  <layout class="QGridLayout" >
+   <property name="margin" >
+    <number>9</number>
+   </property>
+   <property name="spacing" >
+    <number>6</number>
+   </property>
+   <item row="0" column="0" >
+    <widget class="QGroupBox" name="groupBox" >
+     <property name="title" >
+      <string>Table</string>
+     </property>
+     <layout class="QGridLayout" >
+      <property name="margin" >
+       <number>9</number>
+      </property>
+      <property name="spacing" >
+       <number>6</number>
+      </property>
+      <item row="0" column="0" >
+       <layout class="QVBoxLayout" >
+        <property name="margin" >
+         <number>0</number>
+        </property>
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="label" >
+          <property name="text" >
+           <string>&amp;Name</string>
+          </property>
+          <property name="buddy" >
+           <cstring>tableNameLineEdit</cstring>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="tableNameLineEdit" />
+        </item>
+       </layout>
+      </item>
+      <item row="1" column="0" >
+       <layout class="QVBoxLayout" >
+        <property name="margin" >
+         <number>0</number>
+        </property>
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <item>
+         <layout class="QHBoxLayout" >
+          <property name="margin" >
+           <number>0</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="label_2" >
+            <property name="text" >
+             <string>&amp;Fields</string>
+            </property>
+            <property name="buddy" >
+             <cstring>fieldsTableView</cstring>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="addFieldButton" >
+            <property name="text" >
+             <string>&amp;Add Field</string>
+            </property>
+            <property name="icon" >
+             <iconset resource="../src/resources/sqliteadmin.qrc" >:/icons/icons/edit_add.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="removeFieldButton" >
+            <property name="enabled" >
+             <bool>false</bool>
+            </property>
+            <property name="text" >
+             <string>&amp;Remove Field</string>
+            </property>
+            <property name="icon" >
+             <iconset resource="../src/resources/sqliteadmin.qrc" >:/icons/icons/editdelete.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+      <item row="2" column="0" >
+       <widget class="FieldTableWidget" name="fieldsTableView" >
+        <property name="dragEnabled" >
+         <bool>false</bool>
+        </property>
+        <property name="dragDropOverwriteMode" >
+         <bool>false</bool>
+        </property>
+        <property name="dragDropMode" >
+         <enum>QAbstractItemView::DragDrop</enum>
+        </property>
+        <property name="alternatingRowColors" >
+         <bool>true</bool>
+        </property>
+        <property name="selectionBehavior" >
+         <enum>QAbstractItemView::SelectRows</enum>
+        </property>
+        <column>
+         <property name="text" >
+          <string>Name</string>
+         </property>
+        </column>
+        <column>
+         <property name="text" >
+          <string>Type</string>
+         </property>
+        </column>
+        <column>
+         <property name="text" >
+          <string>Length</string>
+         </property>
+        </column>
+        <column>
+         <property name="text" >
+          <string>Precision</string>
+         </property>
+        </column>
+        <column>
+         <property name="text" >
+          <string>Required</string>
+         </property>
+        </column>
+        <column>
+         <property name="text" >
+          <string>Auto</string>
+         </property>
+        </column>
+        <column>
+         <property name="text" >
+          <string>Default Value</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0" >
+    <widget class="QDialogButtonBox" name="buttonBox" >
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons" >
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::NoButton|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>FieldTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>FieldTableWidget.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../src/resources/sqliteadmin.qrc" />
+ </resources>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>EditTableDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>257</x>
+     <y>391</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>EditTableDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>325</x>
+     <y>391</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
